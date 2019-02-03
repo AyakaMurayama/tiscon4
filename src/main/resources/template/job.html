@@ -7,6 +7,7 @@
     <link rel="stylesheet"
           th:href="@{https://cdn.jsdelivr.net/semantic-ui/2.2.6/semantic.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/main.css}">
+    <script src="https://ajaxzip3.github.io/ajaxzip3.js"></script>
 </head>
 <body>
 
@@ -60,7 +61,7 @@
                                 <td>
                                     <p>例：123-4567</p>
                                     <div class="field" th:classappend="${errors.hasError('employerZipCode')} ? 'error'">
-                                        <input type="text" name="employerZipCode" th:value="${form.employerZipCode}"/>
+                                        <input type="text" name="employerZipCode" th:value="${form.employerZipCode}" onKeyUp="AjaxZip3.zip2addr(this,'','employerAddress','employerAddress');">
                                         <p th:if="${errors.hasError('employerZipCode')}"
                                            th:text="${errors.getMessage('employerZipCode')}" class="error-message">
                                         </p>
@@ -108,7 +109,8 @@
                                                <!--th:text="${item.label}" th:field="*{industryType}"-->
                                                <!--th:checked="${form.industryType}==${item.code}"/>-->
                                     <div class="field" th:classappend="${errors.hasError('industryType')} ? 'error'">
-                                        <select name="industryType">
+                                        <select name="industryType" required>
+                                            <option value="">選択してください</option>
                                             <option value="農林水鉱">農業・林業・水産業・鉱業</option>
                                             <option value="建築不動産">建設・不動産業</option>
                                             <option value="製造">製造業</option>

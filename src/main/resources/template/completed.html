@@ -21,7 +21,10 @@
                         <h2 class="ui aligned header teal">お申込み完了</h2>
                         <div class="ui comments">
                             お申込みありがとうございました。登録を受け付けました。<br>
-                            審査が完了次第、ご登録いただいたメールアドレス宛に結果をご連絡いたします。
+                            <span th:text="|予約受付番号:${number}|"/><br>
+                            審査が完了次第、ご登録いただいたメールアドレス宛に結果をご連絡いたします。<br>
+                            もしメールが3日たっても届かない場合、以下の電話番号にご連絡ください。<br>
+                            XXXX-XXXX-XXXX
                         </div>
                         <a class="ui teal button" href="/action/index">トップページに戻る</a>
                     </div>

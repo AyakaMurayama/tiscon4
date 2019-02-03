@@ -130,12 +130,13 @@ public class OrderAction {
             throw new ApplicationException(message);
         }
 
-        UniversalDao.findAllBySqlFile(ZipcodeDto.class, "ZIPCODE_LIST");
+        //UniversalDao.findAllBySqlFile(ZipcodeDto.class, "ZIPCODE_LIST");
+        //登録/一括登録 中身は郵便番号データだと思われるので削除しました
 
-        BeanUtil.copy(form, insOrder);
+        BeanUtil.copy(form, insOrder);//プロパティに対する値の設定と取得
 
-        ctx.setRequestScopedVar("form", new JobForm());
-        ctx.setRequestScopedVar("industryTypes", IndustryType.values());
+        ctx.setRequestScopedVar("form", new JobForm());//ジョブフォームの中身もってきて、
+        ctx.setRequestScopedVar("industryTypes", IndustryType.values());//ジョブフォームの種類持って来てる
 
         return new HttpResponse("job.html");
     }
@@ -169,6 +170,10 @@ public class OrderAction {
     public HttpResponse create(HttpRequest req, ExecutionContext ctx) {
         JobForm form = ctx.getRequestScopedVar("form");
         InsuranceOrder insOrder = SessionUtil.get(ctx, "insOrder");
+
+        Integer number = SessionUtil.or(ctx, "number", 100000);
+        ctx.setRequestScopedVar("number", number);
+        SessionUtil.put(ctx, "number", number + 1);
 
         BeanUtil.copy(form, insOrder);
 
