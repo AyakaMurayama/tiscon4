@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Futuer</title>
+
+    <link rel="stylesheet" th:href="@{http://fonts.googleapis.com/css?family=Exo:900}" />
+    <link rel="stylesheet" th:href="@{https://cdn.jsdelivr.net/semantic-ui/2.2.6/semantic.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <script src="https://ajaxzip3.github.io/ajaxzip3.js"></script>
+    <script src="//code.jquery.com/jquery-2.0.0.js"></script>
+    <script></script>
+
+
+</head>
+
+<body>
+
+    <nav th:insert="header.html :: header"></nav>
+
+    <div class="full height image">
+        <div class="ui main container">
+            <div class="ui information container">
+                <div class="acceptance-icon" style="border:solid 3px #0174DF;">
+                    <img src="/img/icon_future.png">
+                </div>
+                <div class="ui middle center aligned grid ">
+                    <div class="user-block">
+                        <h1 class="ui aligned header teal">詳細情報</h1>
+
+                        <form class="ui form" method="post" action="/action/order/inputJob">
+
+                            <table class="ui celled table">
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <label>契約年齢</label>
+
+                                        </td>
+                                        <td>
+                                            <p>満18歳～80歳</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label>月々の保険料</label>
+                                        </td>
+                                        <td>
+                                            <p>2,627円</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label>入院</label>
+                                        </td>
+                                        <td>
+                                            <p>日額5000円</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label>手術</label>
+                                        </td>
+                                        <td>
+                                            <p>【入院中の手術】 1回10万円</p>
+                                            <p>【外来手術】 1回2.5万円</p>
+                                            <p>【放射線治療】 1回10万円</p>
+                                            <p>【骨髄ドナー】 1回のみ5万円</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label>先進医療</label>
+                                        </td>
+                                        <td>
+                                            <p>5万</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label>健康祝い金</label>
+                                        </td>
+                                        <td>
+                                            <p>5年ごとに5万円</p>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                            <div class="ui column grid">
+                                <div class="eight wide column left aligned">
+                                    <!--/*戻る場合、formの送り先を強制的に書き換える*/-->
+                                    <button class="ui button angle left icon" onclick="form.action='/action/order/backindex';">戻る
+                                </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
