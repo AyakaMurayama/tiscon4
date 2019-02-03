@@ -8,16 +8,16 @@
           th:href="@{https://cdn.jsdelivr.net/semantic-ui/2.2.6/semantic.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/main.css}">
     <script src="https://ajaxzip3.github.io/ajaxzip3.js"></script>
-    <script src="//code.jquery.com/jquery-2.0.0.js"></script>
-    <script></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script th:src="@{/js/jquery.autoKana.js}"></script>
 
     <script type="text/javascript">
-		$(document).ready(function() {
-			$.fn.autoKana('#name', '#kana', {
-				katakana : true  //true：カタカナ、false：ひらがな（デフォルト）
-			});
-		});
-	</script>
+        $(function() {
+            $.fn.autoKana('#user_name', '#user_name_kana',{katakana:true});
+            console.log("in");
+        });
+    </script>
 
 </head>
 <body>
@@ -57,7 +57,7 @@
                                 <td>
                                     <p>例：ＴＩＳ　太郎</p>
                                     <div class="field" th:classappend="${errors.hasError('kanjiName')} ? 'error'">
-                                        <input type="text" id="userName" name="kanjiName" th:value="${form.kanjiName}"/>
+                                        <input type="text" id="user_name" name="kanjiName" th:value="${form.kanjiName}"/>
                                         <p th:if="${errors.hasError('kanjiName')}"
                                            th:text="${errors.getMessage('kanjiName')}" class="error-message">
                                         </p>
@@ -72,7 +72,7 @@
                                 <td>
                                     <p>例：ティーアイエス　タロウ</p>
                                     <div class="field" th:classappend="${errors.hasError('kanaName')} ? 'error'">
-                                        <input type="text" name="kanaName" th:value="${form.kanaName}"/>
+                                        <input type="text" id="user_name_kana" name="kana_name"  th:value="${form.kanaName}"/>
                                         <p th:if="${errors.hasError('kanaName')}"
                                            th:text="${errors.getMessage('kanaName')}" class="error-message">
                                         </p>
@@ -250,7 +250,8 @@
                                                <!--th:checked="${form.job}==${item.code}"/>-->
                                     <!--</div>-->
                                     <div class="field" th:classappend="${errors.hasError('job')} ? 'error'">
-                                        <select name="job">
+                                        <select name="job"　required>
+                                            <option value="">選択してください</option>
                                             <option value="経営自営">経営・自営業</option>
                                             <option value="会社員">会社員</option>
                                             <option value="契約派遣">契約・派遣社員</option>
