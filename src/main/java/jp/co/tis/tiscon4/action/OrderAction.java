@@ -32,6 +32,44 @@ import nablarch.fw.web.interceptor.OnError;
  */
 public class OrderAction {
 
+
+    /**
+     * indexから詳細に飛ぶ処理
+     **/
+    @InjectForm(form = IndexForm.class)
+    @OnError(type = ApplicationException.class, path = "treat.html")
+    public HttpResponse treat(HttpRequest req, ExecutionContext ctx) {
+
+        return new HttpResponse("treat.html");
+    }
+
+    @InjectForm(form = IndexForm.class)
+    @OnError(type = ApplicationException.class, path = "treatlady.html")
+    public HttpResponse treatlady_(HttpRequest req, ExecutionContext ctx) {
+
+        return new HttpResponse("treatlady");
+    }
+
+
+
+    @InjectForm(form = IndexForm.class)
+    @OnError(type = ApplicationException.class, path = "future.html")
+    public HttpResponse future(HttpRequest req, ExecutionContext ctx) {
+
+        return new HttpResponse("future");
+    }
+
+    /**
+     * 詳細からindexにとぶための処理
+     **/
+    @InjectForm(form = IndexForm.class)
+    @OnError(type = ApplicationException.class, path = "index.html")
+    public HttpResponse backindex(HttpRequest req, ExecutionContext ctx) {
+
+        return new HttpResponse("index");
+    }
+
+
     /**
      * 加入条件確認画面を表示する。
      *
@@ -83,10 +121,10 @@ public class OrderAction {
     @OnError(type = ApplicationException.class, path = "forward://inputUserForError")
     @UseToken
     public HttpResponse inputJob(HttpRequest req, ExecutionContext ctx) {
-        UserForm form = ctx.getRequestScopedVar("form");
-        InsuranceOrder insOrder = SessionUtil.get(ctx, "insOrder");
+        UserForm form = ctx.getRequestScopedVar("form");//リクエストスコープから値を出してる
+        InsuranceOrder insOrder = SessionUtil.get(ctx, "insOrder");//セッションスコープから値を取り出してる
 
-        // treatLadyは女性しか加入できないため、性別選択チェックを行う。
+        //treatLadyは女性しか加入できないため、性別選択チェックを行う。
         if (insOrder.getInsuranceType().equals("treatLady") && form.getGender().equals("male")) {
             Message message = ValidationUtil.createMessageForProperty("gender", "tiscon4.order.inputUser.error.gender");
             throw new ApplicationException(message);
